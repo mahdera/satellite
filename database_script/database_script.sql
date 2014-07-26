@@ -14,6 +14,6 @@ create table tbl_user(
     user_faild_login_count int not null,
     user_create_date datetime not null,
     modified_by int not null,
-    modification_date not null,
+    modification_date datetime not null,
     primary key(user_id)
 );

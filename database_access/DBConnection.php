@@ -40,5 +40,12 @@ class DBConnection {
         $stmt->execute();
         //finally close the connection
         $stmt->close();
-    }    
+    }   
+    
+    public static function readFromDatabase($stmt){
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result;
+    }
 }//end class

@@ -22,8 +22,7 @@ class UserDAO {
     private $email;
     private $userLastValidLogin;
     private $userFirstInvalidLogin;
-    private $userFailedLoginCount;
-    private $userCreatedBy;
+    private $userFailedLoginCount;    
     private $userCreateDate;
     private $modifiedBy;
     private $modificationDate;
@@ -66,11 +65,7 @@ class UserDAO {
 
     public function getUserFailedLoginCount() {
         return $this->userFailedLoginCount;
-    }
-
-    public function getUserCreatedBy() {
-        return $this->userCreatedBy;
-    }
+    }    
 
     public function getUserCreateDate() {
         return $this->userCreateDate;
@@ -118,11 +113,7 @@ class UserDAO {
 
     public function setUserFailedLoginCount($userFailedLoginCount) {
         $this->userFailedLoginCount = $userFailedLoginCount;
-    }
-
-    public function setUserCreatedBy($userCreatedBy) {
-        $this->userCreatedBy = $userCreatedBy;
-    }
+    }    
 
     public function setUserCreateDate($userCreateDate) {
         $this->userCreateDate = $userCreateDate;
@@ -138,9 +129,49 @@ class UserDAO {
 
     public function save(){
         try{
+            $stringCommand = "insert into tbl_user(user_id, user_type, username, user_password, user_status,"
+                    . "email, user_last_valid_login, user_first_invalid_login, user_faild_login_count,"
+                    . "user_create_date, modified_by, modification_date) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+            $statement = DBConnection::getPreparedStatement($stringCommand);
+            //now bind the parameters with the place holder question mark symbols...
+            $userId = $this->getUserId();
+            $userType = $this->getUserType();
+            $username = $this->getUsername();
+            $userPassword = $this->getUserPassword();
+            $userStatus = $this->getUserStatus();
+            $email = $this->getEmail();
+            $userLastValidLogin = $this->getUserLastValidLogin();
+            $userFirstInvalidLogin = $this->getUserFirstInvalidLogin();
+            $userFaildLoginCount = $this->getUserFailedLoginCount();
+            $userCreateDate = $this->getUserCreateDate();
+            $modifiedBy = $this->getModifiedBy();
+            $modificationDate = $this->getModificationDate();
             
+            $statement->bind_param("isssssssssss", $userId, $userType, $username, $userPassword, $userStatus,
+                    $email, $userLastValidLogin, $userFirstInvalidLogin, $userFaildLoginCount, $userCreateDate,
+                    $modifiedBy, $modificationDate);
+            //execute the statement
+            DBConnection::executePreparedStatement($statement);
         } catch (Exception $ex) {
-
+            error_log($ex->__toString());
+        }
+    }
+    
+    public static function getUserAccount($username,$email,$password){
+        //validate on the server side just in case the javascript is disabled on the client side...
+        if(! empty($username) && !empty($email) && ! empty($password)){
+            $stringQuery = "select * from tbl_user where username = ? and email = ? and password = ?";
+            $statement = DBConnection::getPreparedStatement($stringQuery);
+            $username = $this->getUsername();
+            $email = $this->getEmail();
+            $password = MD5($this->getUserPassword());
+            $statement->bind_param('sss', $username, $email, $password);
+            $result = DBConnection::readFromDatabase($statement);
+            while($row = $result->fetch_array(MYSQLI_NUM)){
+                foreach ($row as $r){
+                    print($r+"<br/>");
+                }
+            }//end while loop
         }
     }
 }//end class

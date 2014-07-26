@@ -54,5 +54,9 @@
             ?>
         <!--end import javascript files-->
 </body>
-	
+<script type="text/javascript">
+    $(document).ready(function(){        
+        $('#username').focus();
+    });//end document.ready function
+</script>	
 </html>

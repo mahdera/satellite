@@ -1,7 +1,7 @@
 <div id="home-content1" ng-app="adminLoginApp" class="left mobile-collapse" style="text-align: center;width: 100%">
     <h2 class="replace">Sign in to continue to Satellite</h2>
     <div  ng-controller="AdminLoginController">                 
-        <form name="adminLoginForm" id="contact_form" method="post" novalidate="" role="form">
+        <form name="formData" id="contact_form" method="post" novalidate="" role="form">
             <div style="width: 50%;margin: 0 auto;" class="google-login-form">
                 <br/><br/><br/><br/><br/>
                 <div class="form_field">
@@ -29,6 +29,6 @@
         </form>        
         <script type="text/javascript" src="ad_page_sections/admin_angular_js/angular.js"></script>        
         <script type="text/javascript" src="ad_page_sections/admin_angular_js/adminLoginPageApp.js"></script>
-        <script type="text/javascript" src="ad_page_sections/admin_angular_js/controllers/AdminLoginController.js"></script>
+        <script type="text/javascript" src="ad_page_sections/admin_angular_js/controllers/AdminLoginController.js"></script>        
     </div>
 </div>

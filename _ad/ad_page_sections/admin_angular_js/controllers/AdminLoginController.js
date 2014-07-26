@@ -3,8 +3,7 @@
 adminLoginApp.controller('AdminLoginController', function AdminLoginController($scope, $http){    
     
     $scope.validateForm = function() {   
-        $scope.message = "";             
-        //$scope.formData = {};
+        $scope.message = "";                     
             
         if(!$scope.formData.username){
             $scope.message = 'Enter your username!';
@@ -20,7 +19,7 @@ adminLoginApp.controller('AdminLoginController', function AdminLoginController($
             console.log($scope.formData);
             $http({
                 method  : 'POST',
-                url     : 'validate_admin.php',
+                url     : 'process.php',
                 data    : $.param($scope.formData),  // pass in data as strings
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
             })

@@ -1,0 +1,103 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 25, 2014, 6:43:36 PM
+    Author     : alemayehu
+*/
+#slide-container, #logo{
+    display: none;
+}
+
+.sf-menu ul{
+    padding-left: 0;
+    position: absolute;
+}
+
+
+.sf-menu li a{
+    display: block;
+    width: 100%;    
+}
+
+.nivoSlider img{
+    max-width: 100%;
+    height: auto;
+    margin: 0 0 10px 0;
+}
+
+#container{
+    width: 90%;
+}
+
+@media screen and (max-width: 700px){
+    
+    div.mobile-collapse{
+        width: 100%;
+        float: none;
+        margin-right: 0;
+        text-align: justify;
+        padding: 0px 0px;
+    }
+    
+    .sf-menu{
+        
+    }
+    
+    .sf-menu li {
+        display: block;
+        width: 100%;        
+        text-align: center;
+        position: relative;
+    }
+    
+    .sf-menu li a:hover{
+        background: #d9de43;
+    }
+    
+    .sf-menu li a {
+        width: 100%;
+    }
+    
+    body {
+	clear: both; 
+	margin: 0 auto; 
+	width: 70%;
+    }
+    
+    #main{
+        margin-top: 140px;
+        width: 100%;
+    }
+    
+    .sidebar-widget{
+        width: 100%;
+    }
+    
+    #home-content{
+        width: 100%;
+        margin: 0px 0px 0px 0px; 
+        position: relative;
+        clear: both;
+    }
+    
+    #sidebar-home{
+        width: 100%;
+        margin: 0px;
+        //clear: both;
+    }
+   
+}//end max-600px
+
+
+.col_240, .col_212, .col_290, .col_445, .col_312, .col_201, .col_146{ 
+    /*width:21%; margin: 0 10px; */
+    width: 90%;    
+    margin: 10px;
+    text-align: justify;
+    padding-right:  0;
+}
+
+

@@ -1,0 +1,11 @@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/Museo.font.js"></script>
+<script type="text/javascript" src="js/Museo_Sans.font.js"></script>
+<script type="text/javascript" src="js/supersized.3.1.3.core.min.js"></script>
+<script type="text/javascript" src="js/superfish-compile.js"></script>
+<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript" src="js/jquery.tinycarousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.colorbox.js"></script>
+<script type="text/javascript" src="js/jquery.tweet.js"></script>
+<script type="text/javascript" src="js/p2.js"></script>	

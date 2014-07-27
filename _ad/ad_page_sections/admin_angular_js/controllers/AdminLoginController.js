@@ -19,15 +19,14 @@ adminLoginApp.controller('AdminLoginController', function AdminLoginController($
             console.log($scope.formData);
             $http({
                 method  : 'POST',
-                url     : 'process.php',
-                data    : $.param($scope.formData),  // pass in data as strings
+                url     : 'validate_admin.php',
+                //data    : $.param($scope.formData),  // pass in data as strings
+                data : serializeData($scope.formData),
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
             })
             .success(function(data) {
                 if (!data.success) {
-                    // if not successful, bind errors to error variables
-                    $scope.errorName = data.errors.name;
-                    $scope.errorSuperhero = data.errors.superheroAlias;
+                    $scope.message = "Invalid user credential! Try again.";
                 } else {
                     // if successful, bind success message to message
                     //redirect the page to adminhome.php
@@ -37,5 +36,43 @@ adminLoginApp.controller('AdminLoginController', function AdminLoginController($
         }
     };
     
-    //now define a function that deals with form submission...mahder
+    function serializeData( data ) {
+        // If this is not an object, defer to native stringification.
+        if ( ! angular.isObject( data ) ) {
+
+            return( ( data === null ) ? "" : data.toString() );
+
+        }
+
+        var buffer = [];
+
+        // Serialize each key in the object.
+        for ( var name in data ) {
+
+            if ( ! data.hasOwnProperty( name ) ) {
+
+                continue;
+
+            }
+
+            var value = data[ name ];
+
+            buffer.push(
+                encodeURIComponent( name ) +
+                "=" +
+                encodeURIComponent( ( value === null ) ? "" : value )
+            );
+
+        }
+
+        // Serialize the buffer and clean it up for transportation.
+        var source = buffer
+            .join( "&" )
+            .replace( /%20/g, "+" )
+        ;
+
+        return( source );
+
+    }
+    
 });

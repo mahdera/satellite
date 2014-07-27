@@ -27,7 +27,8 @@
                 </div>
             </div>
         </form>        
-        <script type="text/javascript" src="ad_page_sections/admin_angular_js/angular.js"></script>        
+        <!--use CDN when the site is deployed-->
+        <script type="text/javascript" src="local_js_frameworks/angular.js"></script>
         <script type="text/javascript" src="ad_page_sections/admin_angular_js/adminLoginPageApp.js"></script>
         <script type="text/javascript" src="ad_page_sections/admin_angular_js/controllers/AdminLoginController.js"></script>        
     </div>

@@ -131,27 +131,35 @@ class UserDAO {
         try{
             $stringCommand = "insert into tbl_user(user_id, user_type, username, user_password, user_status,"
                     . "email, user_last_valid_login, user_first_invalid_login, user_faild_login_count,"
-                    . "user_create_date, modified_by, modification_date) values(?,?,?,?,?,?,?,?,?,?,?,?)";
-            $statement = DBConnection::getPreparedStatement($stringCommand);
-            //now bind the parameters with the place holder question mark symbols...
-            $userId = $this->getUserId();
-            $userType = $this->getUserType();
-            $username = $this->getUsername();
-            $userPassword = $this->getUserPassword();
-            $userStatus = $this->getUserStatus();
-            $email = $this->getEmail();
-            $userLastValidLogin = $this->getUserLastValidLogin();
-            $userFirstInvalidLogin = $this->getUserFirstInvalidLogin();
-            $userFaildLoginCount = $this->getUserFailedLoginCount();
-            $userCreateDate = $this->getUserCreateDate();
-            $modifiedBy = $this->getModifiedBy();
-            $modificationDate = $this->getModificationDate();
+                    . "user_create_date, modified_by, modification_date) values(?,?,?,?,?,?,?,?,?,?,?,?)";            
+            //now create an associative array and add the parameters to it...
+            $parameterNameArray[0] = "userId";
+            $parameterNameArray[1] = "userType";
+            $parameterNameArray[2] = "username";
+            $parameterNameArray[3] = "userPassword";
+            $parameterNameArray[4] = "userStatus";
+            $parameterNameArray[5] = "email";
+            $parameterNameArray[6] = "userLastValidLogin";
+            $parameterNameArray[7] = "userFirstInvalidLogin";
+            $parameterNameArray[8] = "userFaildLoginCount";
+            $parameterNameArray[9] = "userCreateDate";
+            $parameterNameArray[10] = "modifiedBy";
+            $parameterNameArray[11] = "modificationDate";
             
-            $statement->bind_param("isssssssssss", $userId, $userType, $username, $userPassword, $userStatus,
-                    $email, $userLastValidLogin, $userFirstInvalidLogin, $userFaildLoginCount, $userCreateDate,
-                    $modifiedBy, $modificationDate);
+            $parameterValueArray[0] = $this->getUserId();
+            $parameterValueArray[1] = $this->getUserType();
+            $parameterValueArray[2] = $this->getUsername();
+            $parameterValueArray[3] = $this->getUserPassword();
+            $parameterValueArray[4] = $this->getUserStatus();
+            $parameterValueArray[5] = $this->getEmail();
+            $parameterValueArray[6] = $this->getUserLastValidLogin();
+            $parameterValueArray[7] = $this->getUserFirstInvalidLogin();
+            $parameterValueArray[8] = $this->getUserFailedLoginCount();
+            $parameterValueArray[9] = $this->getUserCreateDate();
+            $parameterValueArray[10] = $this->getModifiedBy();
+            $parameterValueArray[11] = $this->getModificationDate();            
             //execute the statement
-            DBConnection::executePreparedStatement($statement);
+            DBConnection::executePreparedStatement($stringCommand,$parameterNameArray, $parameterValueArray);
         } catch (Exception $ex) {
             error_log($ex->__toString());
         }
@@ -160,18 +168,29 @@ class UserDAO {
     public static function getUserAccount($username,$email,$password){
         //validate on the server side just in case the javascript is disabled on the client side...
         if(! empty($username) && !empty($email) && ! empty($password)){
-            $stringQuery = "select * from tbl_user where username = ? and email = ? and password = ?";
-            $statement = DBConnection::getPreparedStatement($stringQuery);
-            $username = $this->getUsername();
-            $email = $this->getEmail();
-            $password = MD5($this->getUserPassword());
-            $statement->bind_param('sss', $username, $email, $password);
-            $result = DBConnection::readFromDatabase($statement);
-            while($row = $result->fetch_array(MYSQLI_NUM)){
-                foreach ($row as $r){
-                    print($r+"<br/>");
-                }
-            }//end while loop
+            $stringQuery = "select user_type from tbl_user where username = ? and email = ? and password = ?";
+            $prepStmt = DBConnection::getPreparedStatement($stringQuery);
+            
+            if($prepStmt){
+                echo 'passed. u can do db code in here';
+                $prepStmt->bind_param("sss", $username,$email,$username);
+                PHPDebug::printLogText($prepStmt->error, "debug.txt");
+            }else{
+                PHPDebug::printLogText($prepStmt->error, "debug.txt");
+            }
+            /*
+            
+            $parameterValueArray[0] = $username;
+            $parameterValueArray[1] = $email;
+            $parameterValueArray[2] = $password;
+            $parameterTypeOrder = "sss";
+            $resultSet = array();
+            $resultSet = DBConnection::readFromDatabase($stringQuery, $parameterTypeOrder, $parameterValueArray);
+            
+            //now display the content of the array to test....
+            var_dump($resultSet);
+             * */
+             
         }
     }
 }//end class

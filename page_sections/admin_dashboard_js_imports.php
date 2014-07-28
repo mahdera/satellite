@@ -4,13 +4,12 @@
 <script src="../admin_js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../admin_js/plugins/metisMenu/metisMenu.min.js"></script>
-<!-- Morris Charts JavaScript 
-<script src="../admin_js/plugins/morris/raphael.min.js"></script>
-<script src="../admin_js/plugins/morris/morris.min.js"></script>
-<script src="../admin_js/plugins/morris/morris-data.js"></script>
--->
 <!-- Custom Theme JavaScript -->
 <script src="../admin_js/sb-admin-2.js"></script>
 <script type="text/javascript" src="../local_js_frameworks/angular.js"></script>
+<script type="text/javascript" src="../angular_js/angular-route.min.js"></script>
 <script type="text/javascript" src="../angular_js/adminDashboardApp.js"></script>
-<script type="text/javascript" src="../angualr_js/controllers/AdminLoginController.js"></script>
+<script type="text/javascript" src="../angular_js/controllers/AdminLogoutController.js"></script>
+
+<script type="text/javascript" src="../angular_js/route/routeConfig.js"></script>
+<script type="text/javascript" src="../angular_js/controllers/AdminUserProfileController.js"></script>

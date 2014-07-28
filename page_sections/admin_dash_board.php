@@ -1,5 +1,10 @@
 <?php
     require_once '../core/init.php';
+    //check if the user has successfully logged in...otherwise redirect him/her 
+    //back to the index page.
+    if(! isset($_SESSION['user'])){
+        header("Location: index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app="adminDashboardApp">
@@ -53,7 +58,9 @@
                                 <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
                             </div>      
                             <div class="panel-body">
-                                <div id="morris-area-chart">this is the text...</div>
+                                <div id="morris-area-chart" ng-view>
+                                    this is the text...
+                                </div>
                             </div>                     
                         </div>          
                     </div> 

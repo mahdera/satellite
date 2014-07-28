@@ -12,7 +12,7 @@
 
         $userFullName = (isset($userFullName) ? $userFullName->user_full_name : 'Administrator');
     ?>
-    <a class="navbar-brand" href="#.php">Satellite Admin | <?php echo $userFullName;?> loged in</a>
+    <a class="navbar-brand" href="#.php">Satellite Admin | <span style="color: black;"><?php echo $userFullName;?> logged in</span></a>
     
 </div>
 <!-- /.navbar-header -->
@@ -132,17 +132,27 @@
             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
-            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-        </li>
-        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-    </li>
-    <li class="divider"></li>
-    <li ng-controller="AdminLogoutController">
-        <a ng-click="logout();"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-    </li>
-</ul>
+            <li ng-controller="AdminUserProfileController">
+                <a ng-href="#/view/adminProfile/<?php echo $userId;?>" >
+                    <i class="fa fa-user fa-fw"></i> 
+                        User Profile
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-gear fa-fw"></i> Settings
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li ng-controller="AdminLogoutController">
+                <a ng-click="logout();">
+                    <i class="fa fa-sign-out fa-fw"></i> 
+                        Logout
+                </a>
+            </li>
+        </ul>
 <!-- /.dropdown-user -->
-</li>
+    </li>
 <!-- /.dropdown -->
 </ul>
 <!-- /.navbar-top-links -->

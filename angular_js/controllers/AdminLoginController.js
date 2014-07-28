@@ -30,7 +30,7 @@ adminLoginApp.controller('AdminLoginController', function AdminLoginController($
                 } else {
                     // if successful, bind success message to message
                     //redirect the page to adminhome.php
-                    window.location.href = "admindashboard.php";
+                    window.location.href = "admin_dash_board.php";
                 }
             });
         }

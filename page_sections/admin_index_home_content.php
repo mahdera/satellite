@@ -1,9 +1,9 @@
 <div id="home-content1" ng-app="adminLoginApp" class="left mobile-collapse" style="text-align: center;width: 100%">
-    <h2 class="replace">Sign in to continue to Satellite</h2>
-    <div  ng-controller="AdminLoginController">                 
+    <h5 class="replace"><span style="color:black;font-weight: normal">Sign in to continue to Satellite</span></h5>
+    <div ng-controller="AdminLoginController">                 
         <form name="formData" id="contact_form" method="post" novalidate="" role="form">
             <div style="width: 50%;margin: 0 auto;" class="google-login-form">
-                <br/><br/><br/><br/><br/>
+                <br/><br/>
                 <div class="form_field">
                     <img src="../images/admin_avatar.png" width="20%" alt="Admin avatar"/>
                 </div>

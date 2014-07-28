@@ -1,3 +1,3 @@
 'use strict';
 
-var adminDashboardApp = angular.module('adminDashboardApp',[]);
+var adminDashboardApp = angular.module('adminDashboardApp',['ngRoute']);

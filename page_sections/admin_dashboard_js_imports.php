@@ -13,3 +13,4 @@
 
 <script type="text/javascript" src="../angular_js/route/routeConfig.js"></script>
 <script type="text/javascript" src="../angular_js/controllers/AdminUserProfileController.js"></script>
+<script type="text/javascript" src="../angular_js/controllers/AdminUserProfileFormController.js"></script>

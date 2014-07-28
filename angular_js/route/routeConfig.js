@@ -11,8 +11,11 @@ adminDashboardApp.config(['$routeProvider',
         when('/view/mahder/:id', {//this is how you pass parameters....you can add more routeParams e.g/:id/:name/:city ...etc
             templateUrl: 'detail.html',
             controller: 'DetailController'            
-        }).
+        });
+        
+        
+        /*.
         otherwise({
             redirectTo: '/'
-        });
+        });*/        
 }]);

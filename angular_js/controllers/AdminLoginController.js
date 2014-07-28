@@ -20,7 +20,6 @@ adminLoginApp.controller('AdminLoginController', function AdminLoginController($
             $http({
                 method  : 'POST',
                 url     : 'validate_admin.php',
-                //data    : $.param($scope.formData),  // pass in data as strings
                 data : serializeData($scope.formData),
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
             })

@@ -11,7 +11,7 @@
  *
  * @author alemayehu
  */
-require_once 'DBConnection.php';
+require_once '../core/init.php';
 
 class UserDAO {    
 
@@ -69,5 +69,11 @@ class UserDAO {
             }
         }
         return false;
+    }
+    
+    public function update($userId, $fields = array()){                
+        if(! DBConnection::getInstance()->update('tbl_user', $userId, $fields) ){
+            throw new Exception('There was a problem updating user profile.');
+        }        
     }
 }//end class

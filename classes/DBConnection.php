@@ -40,8 +40,8 @@ class DBConnection {
     }
     
     public function query($sql, $params = array()){
-        $this->_error = false;
-        if($this->_query = $this->_pdo->prepare($sql)){
+        $this-> _error = false;
+        if($this-> _query = $this->_pdo->prepare($sql)){
             $x = 1;
             if(count($params)){
                 foreach($params as $param){
@@ -49,7 +49,7 @@ class DBConnection {
                     $x++;
                 }
             }
-            
+                        
             if($this->_query->execute()){
                 $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
                 $this->_count = $this->_query->rowCount();
@@ -116,7 +116,7 @@ class DBConnection {
         $set = '';
         $x = 1;
 
-        foreach ($$fields as $name => $value) {
+        foreach ($fields as $name => $value) {
             $set .= "{$name} = ?";
             if($x < count($fields)){
                 $set .= ', ';
@@ -124,12 +124,15 @@ class DBConnection {
             $x++;
         }
 
-        $sql = "UPDATE {$table} SET {$set} WHERE id = {$id}";
-
-        if( ! $this->query($sql, $fields)->error()){
+        $sql = "UPDATE {$table} SET {$set} WHERE user_id = {$id}";
+        
+               
+        if(! $this->query($sql, $fields)->error()){            
             return true;
+        }else{
+            return false;
         }
-        return false;
+         
     }
     
     public function count(){        

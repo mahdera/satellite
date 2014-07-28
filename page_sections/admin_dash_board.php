@@ -61,6 +61,8 @@
                                 <div id="morris-area-chart" ng-view>
                                     this is the text...
                                 </div>
+                                <br/>
+                                <div id="processStatusDiv"></div>
                             </div>                     
                         </div>          
                     </div> 

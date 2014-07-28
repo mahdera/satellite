@@ -11,7 +11,7 @@
  *
  * @author alemayehu
  */
-class User {
+class User {    
     private $userId;
     private $userType;
     private $username;
@@ -25,6 +25,8 @@ class User {
     private $userCreateDate;
     private $modifiedBy;
     private $modificationDate;
+    
+    //this are transient values...not going to be saved to the database...
     private $userDAO = null;
     private $sessionName;
     
@@ -48,6 +50,10 @@ class User {
         return $this->userPassword;
     }
 
+    public function getUserFullName() {
+        return $this->userFullName;
+    }
+
     public function getUserStatus() {
         return $this->userStatus;
     }
@@ -66,7 +72,7 @@ class User {
 
     public function getUserFailedLoginCount() {
         return $this->userFailedLoginCount;
-    }    
+    }
 
     public function getUserCreateDate() {
         return $this->userCreateDate;
@@ -78,6 +84,14 @@ class User {
 
     public function getModificationDate() {
         return $this->modificationDate;
+    }
+
+    public function getUserDAO() {
+        return $this->userDAO;
+    }
+
+    public function getSessionName() {
+        return $this->sessionName;
     }
 
     public function setUserId($userId) {
@@ -93,7 +107,11 @@ class User {
     }
 
     public function setUserPassword($userPassword) {
-        $this->userPassword = MD5($userPassword);
+        $this->userPassword = $userPassword;
+    }
+
+    public function setUserFullName($userFullName) {
+        $this->userFullName = $userFullName;
     }
 
     public function setUserStatus($userStatus) {
@@ -114,7 +132,7 @@ class User {
 
     public function setUserFailedLoginCount($userFailedLoginCount) {
         $this->userFailedLoginCount = $userFailedLoginCount;
-    }    
+    }
 
     public function setUserCreateDate($userCreateDate) {
         $this->userCreateDate = $userCreateDate;
@@ -128,8 +146,36 @@ class User {
         $this->modificationDate = $modificationDate;
     }
 
+    public function setUserDAO($userDAO) {
+        $this->userDAO = $userDAO;
+    }
+
+    public function setSessionName($sessionName) {
+        $this->sessionName = $sessionName;
+    }
+    
     public function create(){
     	$userDAO->save($this);
+    }
+    
+    public function update($user){
+        $userDAO = new UserDAO();
+        //now build the array represting the php object...
+        $fields = array(
+            'user_type' => $user->getUserType(),
+            'username'  => $user->getUsername(),
+            'user_password' => $user->getUserpassword(),
+            'user_full_name' => $user->getUserFullName(),
+            'user_status' => $user->getUserStatus(),
+            'email' => $user->getEmail(),
+            'user_last_valid_login' => $user->getUserLastValidLogin(),
+            'user_first_invalid_login' => $user->getUserFirstInvalidLogin(),
+            'user_faild_login_count' => $user->getUserFailedLoginCount(),
+            'user_create_date' => $user->getUserCreateDate(),
+            'modified_by' => $user->getModifiedBy(),
+            'modification_date' => $user->getModificationDate()
+        );
+        $userDAO->update($user->getUserId() , $fields);        
     }
 
     public function login($username = null, $email = null, $password = null){
@@ -162,20 +208,5 @@ class User {
     public function logout(){
         Session::delete($this->sessionName);
     }
-
-    public function getUserDAO(){
-    	return $this->userDAO;
-    }
-
-    public function setUserDAO($userDAO){
-    	$this->userDAO = $userDAO;
-    }
-
-    public function getUserFullName(){
-        return $this->userFullName;
-    }
-
-    public function setUserFullName($userFullName){
-        $this->userFullName = $userFullName;        
-    }
+    
 }//end class

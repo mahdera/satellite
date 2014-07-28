@@ -13,4 +13,4 @@
  */
 class News {
     //put your code here
-}
+}//end class

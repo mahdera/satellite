@@ -1,9 +1,11 @@
 <?php
-    session_start();
+    if(!isset($_SESSION)){ 
+        session_start(); 
+    }  
     
     $GLOBALS['config'] = array(
         'mysql' => array(
-            'host' => '127.0.0.1',
+            'host' => 'localhost',
             'username' => 'root',
             'password' => 'root',
             'db' => 'db_satellite'
@@ -18,8 +20,8 @@
     );
     
     spl_autoload_register(function($class){
-        require_once 'classes/' . $class . '.php';
+        require_once '../classes/' . $class . '.php';
     });
     
-    require_once '../functions/sanitize.php';
+    //require_once '../functions/sanitize.php';
 ?>

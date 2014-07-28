@@ -88,110 +88,60 @@ class DBConnection {
     public function delete($table, $where){
         return $this->action('DELETE', $table, $where);
     }
+
+    public function insert($table, $fields = array()){
+        if(count($fields)){
+            $keys = array_keys($fields);
+            $values = '';
+            $x = 1;
+
+            foreach($fields as $field){
+                $values .= '?';
+                if($x < count($fields)){
+                    $values .= ', ';
+                }
+                $x++;
+            }
+
+            $sql = "INSERT INTO {$table} (`" . implode('`, `', $keys) . "`) VALUES({$values})";
+
+            if( ! $this->query($sql, $fields)->error()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function update($table, $id, $fields){
+        $set = '';
+        $x = 1;
+
+        foreach ($$fields as $name => $value) {
+            $set .= "{$name} = ?";
+            if($x < count($fields)){
+                $set .= ', ';
+            }
+            $x++;
+        }
+
+        $sql = "UPDATE {$table} SET {$set} WHERE id = {$id}";
+
+        if( ! $this->query($sql, $fields)->error()){
+            return true;
+        }
+        return false;
+    }
     
-    public function count(){
+    public function count(){        
         return $this->_count;
     }
-    
-    
-    
 
-    private static function connect(){
-      $hostname = 'localhost';
-      $uname = 'root';
-      $passwd = 'root';      
+    public function results(){
+        return $this->_results;
+    }
 
-      $mysqliConnection = mysqli_connect($hostname, $uname, $passwd, DBConnection::$databaseName);
-//new mysqli($hostname, $uname, $passwd, DBConnection::$databaseName);       
-      if(mysqli_connect_errno()) {
-                
-        exit();
-      }
-      return $mysqliConnection;
+    public function first(){
+        return $this->_results[0];
     }
-    
-    public static function getPreparedStatement($stringQuery){
-        $connection = DBConnection::connect();
-        //initialize the prepared statement from the database connection...
-        $stmt = $connection->stmt_init();
-        //now create a prepared statement
-        try{
-            $stmt->prepare($stringQuery);
-            return $stmt;
-        }catch(Exception $ex){
-            PHPDebug::printLogText($ex->__toString(), $fileName);
-        }
-        
-    }
-    
-    public static function executePreparedStatement($stringQuery,$parameterNameArray,$parameterValueArray){
-        $stmt = DBConnection::getPreparedStatement($stringQuery);
-        //now for each element in the $parameterArray bind them with the value
-        for($i=0; $i < sizeof($parameterNameArray); $i++){            
-            $stmt->bind_param(($i+1), $parameterNameArray[$i]);            
-        }
-        //insert the datavalues to the parameters..
-        for($j=0; $j < sizeof($parameterValueArray); $j++){
-            $parameterNameArray[$j] = $parameterValueArray[$j];
-            //execute the association here
-            $stmt->execute();
-        }        
-        $stmt->close();
-    }   
-    
-    public static function readFromDatabase($stringQuery,$parameterTypeOrder,$parameterValueArray){
-        $stmt = DBConnection::getPreparedStatement($stringQuery);
-        /*$buildString = "";
-        for($i=0; $i<sizeof($parameterValueArray); $i++){
-            $buildString .= $parameterValueArray[$i].",";
-        }*/
-        //now remove the last comma from the string...
-        //$str = chop($buildString, ",");
-        //echo 'parameterTypeOrder is : '.$parameterTypeOrder.'\n';
-        //echo 'the build string is : '.$str.'<br/>';
-        //echo 'the sqlstring is : '.$stringQuery;
-        if($stmt){
-            //bind parameters for markers
-            $username = "mahder";
-            $email = "mahder.neway@echoorigin.com";
-            $password = "Iloveleki6";
-            $stmt->bind_param("ss", $username,$email);
-            
-            //execute query
-            $stmt->execute();
-            
-            //bind result variables-set
-            $stmt->bind_result($resultSet);
-            
-            //fetch value
-            $stmt->fetch();
-            
-            return $resultSet;
-        }else{
-            error_log("Error accessing database...");
-        }
-        /*
-        //$stmt->bind_param($parameterTypeOrder, $str);
-        //$stmt->bind_param("sss", "mahder","mahder.neway.echoorigin.com","Iloveleki7");
-        
-        
-        //$stmt->bind_param("s", $email);
-        //$stmt->bind_param("s", $password);
-        $stmt->execute();
-        $stmt->store_result();
-        
-        //prepare for fetching result...
-        $result = array();
-        
-        while($stmt->fetch()){
-            foreach($result as $key => $value){
-                $row[$key] = $value;
-            }//end foreach loop
-            $data[] = $row;
-        }//end while loop        
-        $stmt->free_result();
-        $stmt->close();
-        return $data;
-        */
-    }
+
 }//end class

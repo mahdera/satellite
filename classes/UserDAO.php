@@ -11,155 +11,32 @@
  *
  * @author alemayehu
  */
-require_once '../database_access/DBConnection.php';
+require_once 'DBConnection.php';
 
-class UserDAO {
-    private $userId;
-    private $userType;
-    private $username;
-    private $userPassword;
-    private $userStatus;
-    private $email;
-    private $userLastValidLogin;
-    private $userFirstInvalidLogin;
-    private $userFailedLoginCount;    
-    private $userCreateDate;
-    private $modifiedBy;
-    private $modificationDate;
-    
-    function __construct() {
+class UserDAO {    
+
+    public function __construct(){
         
     }
-    
-    public function getUserId() {
-        return $this->userId;
-    }
 
-    public function getUserType() {
-        return $this->userType;
-    }
-
-    public function getUsername() {
-        return $this->username;
-    }
-
-    public function getUserPassword() {
-        return $this->userPassword;
-    }
-
-    public function getUserStatus() {
-        return $this->userStatus;
-    }
-
-    public function getEmail() {
-        return $this->email;
-    }
-
-    public function getUserLastValidLogin() {
-        return $this->userLastValidLogin;
-    }
-
-    public function getUserFirstInvalidLogin() {
-        return $this->userFirstInvalidLogin;
-    }
-
-    public function getUserFailedLoginCount() {
-        return $this->userFailedLoginCount;
-    }    
-
-    public function getUserCreateDate() {
-        return $this->userCreateDate;
-    }
-
-    public function getModifiedBy() {
-        return $this->modifiedBy;
-    }
-
-    public function getModificationDate() {
-        return $this->modificationDate;
-    }
-
-    public function setUserId($userId) {
-        $this->userId = $userId;
-    }
-
-    public function setUserType($userType) {
-        $this->userType = $userType;
-    }
-
-    public function setUsername($username) {
-        $this->username = $username;
-    }
-
-    public function setUserPassword($userPassword) {
-        $this->userPassword = $userPassword;
-    }
-
-    public function setUserStatus($userStatus) {
-        $this->userStatus = $userStatus;
-    }
-
-    public function setEmail($email) {
-        $this->email = $email;
-    }
-
-    public function setUserLastValidLogin($userLastValidLogin) {
-        $this->userLastValidLogin = $userLastValidLogin;
-    }
-
-    public function setUserFirstInvalidLogin($userFirstInvalidLogin) {
-        $this->userFirstInvalidLogin = $userFirstInvalidLogin;
-    }
-
-    public function setUserFailedLoginCount($userFailedLoginCount) {
-        $this->userFailedLoginCount = $userFailedLoginCount;
-    }    
-
-    public function setUserCreateDate($userCreateDate) {
-        $this->userCreateDate = $userCreateDate;
-    }
-
-    public function setModifiedBy($modifiedBy) {
-        $this->modifiedBy = $modifiedBy;
-    }
-
-    public function setModificationDate($modificationDate) {
-        $this->modificationDate = $modificationDate;
-    }
-
-    public function save(){
+    public function save($user){
         try{
-            $stringCommand = "insert into tbl_user(user_id, user_type, username, user_password, user_status,"
-                    . "email, user_last_valid_login, user_first_invalid_login, user_faild_login_count,"
-                    . "user_create_date, modified_by, modification_date) values(?,?,?,?,?,?,?,?,?,?,?,?)";            
-            //now create an associative array and add the parameters to it...
-            $parameterNameArray[0] = "userId";
-            $parameterNameArray[1] = "userType";
-            $parameterNameArray[2] = "username";
-            $parameterNameArray[3] = "userPassword";
-            $parameterNameArray[4] = "userStatus";
-            $parameterNameArray[5] = "email";
-            $parameterNameArray[6] = "userLastValidLogin";
-            $parameterNameArray[7] = "userFirstInvalidLogin";
-            $parameterNameArray[8] = "userFaildLoginCount";
-            $parameterNameArray[9] = "userCreateDate";
-            $parameterNameArray[10] = "modifiedBy";
-            $parameterNameArray[11] = "modificationDate";
-            
-            $parameterValueArray[0] = $this->getUserId();
-            $parameterValueArray[1] = $this->getUserType();
-            $parameterValueArray[2] = $this->getUsername();
-            $parameterValueArray[3] = $this->getUserPassword();
-            $parameterValueArray[4] = $this->getUserStatus();
-            $parameterValueArray[5] = $this->getEmail();
-            $parameterValueArray[6] = $this->getUserLastValidLogin();
-            $parameterValueArray[7] = $this->getUserFirstInvalidLogin();
-            $parameterValueArray[8] = $this->getUserFailedLoginCount();
-            $parameterValueArray[9] = $this->getUserCreateDate();
-            $parameterValueArray[10] = $this->getModifiedBy();
-            $parameterValueArray[11] = $this->getModificationDate();            
-            //execute the statement
-            DBConnection::executePreparedStatement($stringCommand,$parameterNameArray, $parameterValueArray);
+
+            $userInsert = DBConnection::getInstance()->insert('tbl_user', array(
+                'user_id'                   => $this->getUserId(),
+                'user_type'                 => $this->getUserType(),
+                'username'                  => $this->getUsername(),
+                'user_password'             => $this->getUserPassword(),
+                'user_full_name'            => $this->getUserFullName(),
+                'user_status'               => $this->getUserStatus(),
+                'email'                     => $this->getEmail(),
+                'user_last_valid_login'     => $this->getUserLastValidLogin(),
+                'user_first_invalid_login'  => $this->getUserFirstInvalidLogin(),
+                'user_faild_login_count'    => $this->getUserFailedLoginCount(),
+                'user_create_date'          => $this->getUserCreateDate(),
+                'modified_by'               => $this->getModifiedBy(),
+                'modification_date'         => $this->getModificationDate()
+            ));            
         } catch (Exception $ex) {
             error_log($ex->__toString());
         }
@@ -168,29 +45,29 @@ class UserDAO {
     public static function getUserAccount($username,$email,$password){
         //validate on the server side just in case the javascript is disabled on the client side...
         if(! empty($username) && !empty($email) && ! empty($password)){
-            $stringQuery = "select user_type from tbl_user where username = ? and email = ? and password = ?";
-            $prepStmt = DBConnection::getPreparedStatement($stringQuery);
-            
-            if($prepStmt){
-                echo 'passed. u can do db code in here';
-                $prepStmt->bind_param("sss", $username,$email,$username);
-                PHPDebug::printLogText($prepStmt->error, "debug.txt");
+            $user = DBConnection::getInstance()->get('tbl_user', $arrayName = array('username', '=' , $username));
+
+            if(!$user->count()){
+                echo 'No user';
             }else{
-                PHPDebug::printLogText($prepStmt->error, "debug.txt");
-            }
-            /*
-            
-            $parameterValueArray[0] = $username;
-            $parameterValueArray[1] = $email;
-            $parameterValueArray[2] = $password;
-            $parameterTypeOrder = "sss";
-            $resultSet = array();
-            $resultSet = DBConnection::readFromDatabase($stringQuery, $parameterTypeOrder, $parameterValueArray);
-            
-            //now display the content of the array to test....
-            var_dump($resultSet);
-             * */
-             
+                echo $user->first()->username;
+            }             
         }
+    }
+
+    /*
+        This method is used for login action done on the user....be it admin or member user...        
+     */
+    public function find($user = null){        
+        if($user){
+            $field = (is_numeric($user)) ? 'user_id' : 'username';
+            $data = DBConnection::getInstance()->get('tbl_user', array($field, '=', $user));
+
+            if($data->count()){
+                $this->data = $data->first();
+                return $this->data;
+            }
+        }
+        return false;
     }
 }//end class

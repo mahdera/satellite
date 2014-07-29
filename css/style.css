@@ -473,7 +473,7 @@ Contact Page
 #contact_form .text, #contact_form .textarea { border: 1px solid #CCC; }
 #contact_form .button 			{ line-height:1; cursor:pointer; padding:5px 10px; }
 .form_field input#submit 		{ border: 0 none !important;}
-#error-msg						{ margin: 0; }
+#error-msg						{ margin: 0;}
 p.error 						{ display: none; color: #CC3300; padding: 0; margin: 0; }
 p#success 						{ display: none; color: #3F9153; font-style: italic; }
 

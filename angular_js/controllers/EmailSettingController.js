@@ -78,4 +78,5 @@ adminDashboardApp.controller('EmailSettingController', function EmailSettingCont
         return( source );
 
     }
+    
 });//end controller...

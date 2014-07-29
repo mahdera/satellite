@@ -17,3 +17,16 @@ create table tbl_user(
     modification_date datetime not null,
     primary key(user_id)
 );
+
+create table tbl_mail(
+    mail_id int auto_increment,
+    from_user_id int not null,
+    to_user_id int not null,
+    mail_date datetime not null,
+    mail_title varchar(200) not null,
+    mail_content text not null,
+    mail_status varchar(10) not null,
+    primary key(mail_id),
+    foreign key(from_user_id) references tbl_user(user_id),
+    foreign key(to_user_id) references tbl_user(user_id)
+);

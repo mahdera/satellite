@@ -152,7 +152,7 @@
                 </a>
             </li>
             <li>
-                <a ng-href="#/view/setting/<?php echo $userId;?>" >
+                <a ng-href="#/view/setting/password/<?php echo $userId;?>" >
                     <i class="fa fa-gear fa-fw"></i> 
                         Settings - Password
                 </a>

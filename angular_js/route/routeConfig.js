@@ -17,9 +17,14 @@ adminDashboardApp.config(['$routeProvider',
             controller: 'UsernameSettingController'
         }).
         when('/view/setting/password/:uId',{
-            tempateUrl: 'usernamesetting.php',
-            controller: 'SettingController'
-        });        
+            templateUrl: 'show_user_password_setting_form.php',
+            controller: 'PasswordSettingController'
+        });
+        
+        
+        
+        
+        
                 
         /*        
         otherwise({
@@ -28,4 +33,4 @@ adminDashboardApp.config(['$routeProvider',
         */
         
         
-}]);
+}]);//end configuration...

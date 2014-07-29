@@ -16,3 +16,4 @@
 <script type="text/javascript" src="../angular_js/controllers/AdminUserProfileFormController.js"></script>
 <script type="text/javascript" src="../angular_js/controllers/EmailSettingController.js"></script>
 <script type="text/javascript" src="../angular_js/controllers/UsernameSettingController.js"></script>
+<script type="text/javascript" src="../angular_js/controllers/PasswordSettingController.js"></script>

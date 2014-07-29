@@ -1,10 +1,10 @@
 <?php
-require_once '../core/init.php';
-$userId = Session::get(Config::get('session/session_name'));
+    require_once '../core/init.php';
+    $userId = Session::get(Config::get('session/session_name'));
 ?>
 <!-- /.panel-heading -->
-<div class="panel-body" ng-controller="SettingController">
-    <div class="tab-pane fade in active" id="innerSettingDiv">
+<div class="panel-body">
+    <div class="tab-pane fade in active">
         <h4>Email Setting</h4>
         <!--the first tab to load is the username setting form...-->                                                            
         <form role="form">    

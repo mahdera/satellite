@@ -1,6 +1,7 @@
 <?php 
     require_once '../core/init.php';
 ?>
+<h4>User Profile Setting</h4>
 <form role="form" ng-controller="AdminUserProfileFormController">    
     <div class="form-group">        
         <label>User Type</label>

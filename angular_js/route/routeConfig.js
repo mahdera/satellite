@@ -9,14 +9,14 @@ adminDashboardApp.config(['$routeProvider',
             controller: 'AdminUserProfileController'
         }).
         when('/view/setting/:uId', {//this is how you pass parameters....you can add more routeParams e.g/:id/:name/:city ...etc
-            templateUrl: 'setting.php',
-            controller: 'SettingController'            
-        }).
-        when('/view/setting/email/:uId',{
-            templateUrl: 'setting.php',
-            controller: 'SettingController'
+            templateUrl: 'setting.php',//used this for email setting...its default
+            controller: 'EmailSettingController'            
         }).
         when('/view/setting/username/:uId',{
+            templateUrl: 'show_user_name_setting_form.php',
+            controller: 'UsernameSettingController'
+        }).
+        when('/view/setting/password/:uId',{
             tempateUrl: 'usernamesetting.php',
             controller: 'SettingController'
         });        

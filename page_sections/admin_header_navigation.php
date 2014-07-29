@@ -133,25 +133,25 @@
             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
-            <li ng-controller="AdminUserProfileController">
+            <li>
                 <a ng-href="#/view/adminProfile/<?php echo $userId;?>" >
                     <i class="fa fa-user fa-fw"></i> 
                         User Profile
                 </a>
             </li>
-            <li ng-controller="SettingController">
+            <li>
                 <a ng-href="#/view/setting/<?php echo $userId;?>" >
                     <i class="fa fa-gear fa-fw"></i> 
                         Settings - Email
                 </a>
             </li>
-            <li ng-controller="SettingController">
-                <a ng-href="#/view/setting/<?php echo $userId;?>" >
+            <li>
+                <a ng-href="#/view/setting/username/<?php echo $userId;?>" >
                     <i class="fa fa-gear fa-fw"></i> 
                         Settings - Username
                 </a>
             </li>
-            <li ng-controller="SettingController">
+            <li>
                 <a ng-href="#/view/setting/<?php echo $userId;?>" >
                     <i class="fa fa-gear fa-fw"></i> 
                         Settings - Password

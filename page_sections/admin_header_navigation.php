@@ -13,13 +13,13 @@
 
         $userFullName = (isset($userFullName) ? $userFullName->user_full_name : 'Administrator');
     ?>
-    <a class="navbar-brand" href="#.php">Satellite Admin | <span style="color: black;"><?php echo $userFullName;?> logged in</span></a>
+    <a class="navbar-brand" ng-href="">Satellite Admin | <span style="color: black;"><?php echo $userFullName;?> logged in</span></a>
     
 </div>
 <!-- /.navbar-header -->
 <ul class="nav navbar-top-links navbar-right">
     <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <a class="dropdown-toggle" data-toggle="dropdown" ng-href="">
             <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-messages">
@@ -69,7 +69,7 @@
         <!-- /.dropdown-messages -->
     </li>
     <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <a class="dropdown-toggle" data-toggle="dropdown" ng-href="">
             <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-alerts">
@@ -129,7 +129,7 @@
     </li>
     <!-- /.dropdown -->
     <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#.php">
+        <a class="dropdown-toggle" data-toggle="dropdown" ng-href="">
             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
@@ -139,9 +139,22 @@
                         User Profile
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-gear fa-fw"></i> Settings
+            <li ng-controller="SettingController">
+                <a ng-href="#/view/setting/<?php echo $userId;?>" >
+                    <i class="fa fa-gear fa-fw"></i> 
+                        Settings - Email
+                </a>
+            </li>
+            <li ng-controller="SettingController">
+                <a ng-href="#/view/setting/<?php echo $userId;?>" >
+                    <i class="fa fa-gear fa-fw"></i> 
+                        Settings - Username
+                </a>
+            </li>
+            <li ng-controller="SettingController">
+                <a ng-href="#/view/setting/<?php echo $userId;?>" >
+                    <i class="fa fa-gear fa-fw"></i> 
+                        Settings - Password
                 </a>
             </li>
             <li class="divider"></li>

@@ -8,14 +8,24 @@ adminDashboardApp.config(['$routeProvider',
             templateUrl: 'admin_user_profile.php',
             controller: 'AdminUserProfileController'
         }).
-        when('/view/mahder/:id', {//this is how you pass parameters....you can add more routeParams e.g/:id/:name/:city ...etc
-            templateUrl: 'detail.html',
-            controller: 'DetailController'            
-        });
-        
-        
-        /*.
+        when('/view/setting/:uId', {//this is how you pass parameters....you can add more routeParams e.g/:id/:name/:city ...etc
+            templateUrl: 'setting.php',
+            controller: 'SettingController'            
+        }).
+        when('/view/setting/email/:uId',{
+            templateUrl: 'setting.php',
+            controller: 'SettingController'
+        }).
+        when('/view/setting/username/:uId',{
+            tempateUrl: 'usernamesetting.php',
+            controller: 'SettingController'
+        });        
+                
+        /*        
         otherwise({
-            redirectTo: '/'
-        });*/        
+            //do nothing
+        });
+        */
+        
+        
 }]);

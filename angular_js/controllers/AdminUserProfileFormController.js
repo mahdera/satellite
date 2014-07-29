@@ -8,13 +8,11 @@ adminDashboardApp.controller('AdminUserProfileFormController', function AdminUse
         
         $http({
             method  : 'GET',
-            url     : 'get_admin_user_profile.php?uId='+[$routeParams.uId],
-            //data : serializeData($scope.formData),
-            //headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+            url     : 'get_admin_user_profile.php?uId='+[$routeParams.uId]            
         })
         .success(function(data) {
             if (!data.success) {
-                $scope.message = "Invalid user credential! Try again.";
+                $scope.message = "Could not find user with the given userId.";
             } else {
                 // if successful, bind success message to message
                 $scope.adminProfileForm.userid = $routeParams.uId;

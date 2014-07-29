@@ -107,7 +107,7 @@ class User {
     }
 
     public function setUserPassword($userPassword) {
-        $this->userPassword = $userPassword;
+        $this->userPassword = MD5($userPassword);
     }
 
     public function setUserFullName($userFullName) {
@@ -177,6 +177,25 @@ class User {
         );
         $userDAO->update($user->getUserId() , $fields);        
     }
+    
+    public function userExistsWithCredentials($username, $email, $password){
+        $userDao = new UserDAO();
+    	$fetchedUser = $userDao->find($username);
+
+    	if($fetchedUser){
+            //there is a record with the given username...then do the filter for email...
+            if($fetchedUser->email === $email){
+                    //now the username and the password happen to be the same...
+                    //I need to filter once more which is using password
+                    if($fetchedUser->user_password === MD5($password)){    				
+                        return true;
+                    }
+            }	
+    	}else{
+            //failed to login    		
+            return false;
+    	}
+    }
 
     public function login($username = null, $email = null, $password = null){
     	$userDao = new UserDAO();
@@ -189,7 +208,7 @@ class User {
     			//I need to filter once more which is using password
     			if($fetchedUser->user_password === MD5($password)){    				
     				//login successfull
-                    Session::put($this->sessionName, $fetchedUser->user_id);
+                                Session::put($this->sessionName, $fetchedUser->user_id);
     				return true;
     			}
     		}	

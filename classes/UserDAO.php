@@ -70,6 +70,17 @@ class UserDAO {
         }
         return false;
     }
+
+    /*Did this b/c email adderss is unique to the entity*/
+    public function findUsingEmail($user = null){
+        $field = 'email';
+        $data = DBConnection::getInstance()->get('tbl_user', array($field, '=', $user));
+
+        if($data->count()){
+            $this->data = $data->first();
+            return $this->data;
+        }
+    }
     
     public function update($userId, $fields = array()){                
         if(! DBConnection::getInstance()->update('tbl_user', $userId, $fields) ){

@@ -38,6 +38,33 @@ class DBConnection {
         }
         return self::$_instance;
     }
+
+    public function fetchResultSet($sql, $params = array()){
+        //var_dump($params);passed
+        $this-> _error = false;
+        if($this-> _query = $this->_pdo->prepare($sql)){
+            $x = 1;
+            if(count($params)){
+                foreach($params as $param){
+                    $this->_query->bindValue($x, $param);
+                    $x++;
+                }
+
+            }else{
+                echo 'something wrong with the array';
+            }
+
+            var_dump($this->_query);
+                        
+            if($this->_query->execute()){
+                $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                $this->_count = $this->_query->rowCount();
+            }else{
+                $this->_error = true;
+            }
+        }
+        return $this->_results;
+    }
     
     public function query($sql, $params = array()){
         $this-> _error = false;
@@ -75,7 +102,7 @@ class DBConnection {
             if(in_array($operator, $operators)){
                 $sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
                 if( !$this->query($sql, array($value))->error() ){
-                    return $this;
+                    return $this;//was this
                 }
             }
         }
@@ -103,8 +130,8 @@ class DBConnection {
                 $x++;
             }
 
-            $sql = "INSERT INTO {$table} (`" . implode('`, `', $keys) . "`) VALUES({$values})";
-
+            $sql = "INSERT INTO {$table} (`" . implode('`, `', $keys) . "`) VALUES( {$values} )";
+            //var_dump($sql);
             if( ! $this->query($sql, $fields)->error()){
                 return true;
             }
@@ -134,12 +161,16 @@ class DBConnection {
         }
          
     }
+
+    public function fetchAllRecords($table, $where){
+        return $this->query("SELECT * FROM {$table} WHERE $where");
+    }
     
     public function count(){        
         return $this->_count;
     }
 
-    public function results(){
+    public function getResults(){
         return $this->_results;
     }
 

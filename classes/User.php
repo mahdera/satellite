@@ -110,6 +110,10 @@ class User {
         $this->userPassword = MD5($userPassword);
     }
 
+    public function existingUserPassword($userPassword){
+        $this->userPassword = $userPassword;
+    }
+
     public function setUserFullName($userFullName) {
         $this->userFullName = $userFullName;
     }
@@ -197,7 +201,7 @@ class User {
     	}
     }
 
-    public function login($username = null, $email = null, $password = null){
+    public function login($username = null, $email = null, $password = null){        
     	$userDao = new UserDAO();
     	$fetchedUser = $userDao->find($username);
 
@@ -208,7 +212,7 @@ class User {
     			//I need to filter once more which is using password
     			if($fetchedUser->user_password === MD5($password)){    				
     				//login successfull
-                                Session::put($this->sessionName, $fetchedUser->user_id);
+                    Session::put($this->sessionName, $fetchedUser->user_id);
     				return true;
     			}
     		}	
@@ -221,6 +225,12 @@ class User {
     public function getUserUsingUserId($userId){
         $userDao = new UserDAO();
         $fetchedUser = $userDao->find($userId);
+        return $fetchedUser;
+    }
+
+    public function getUserUsingEmailAddress($email){        
+        $userDao = new UserDAO();
+        $fetchedUser = $userDao->findUsingEmail($email);        
         return $fetchedUser;
     }
 

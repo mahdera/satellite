@@ -12,7 +12,7 @@
  * @author alemayehu
  */
 require_once '../core/init.php';
-
+//error_reporting(0);
 class MailDAO {
     public function __construct(){        
     }
@@ -20,15 +20,18 @@ class MailDAO {
     public function save($mail){
         try{
 
-            $mailInsert = DBConnection::getInstance()->insert('tbl_mail', array(
-                'mail_id'                       => $this->getUserId(),
-                'from_user_id'                  => $this->getUserType(),
-                'to_user_id'                    => $this->getUsername(),
-                'mail_date'                     => $this->getUserPassword(),
-                'mail_title'                    => $this->getUserFullName(),
-                'mail_content'                  => $this->getUserStatus(),
-                'mail_status'                   => $this->getEmail()                
-            ));            
+            $mailInsert = DBConnection::getInstance()->insert('tbl_mail', array(                
+                'from_user_id'                  => $mail->getFromUserId(),
+                'to_user_id'                    => $mail->getToUserId(),
+                'mail_date'                     => $mail->getMailDate(),
+                'mail_title'                    => $mail->getMailTitle(),
+                'mail_content'                  => $mail->getMailContent(),
+                'mail_status'                   => $mail->getMailStatus()                
+            )); 
+
+            if(! DBConnection::getInstance()->insert('tbl_mail', $mailInsert) ){
+                throw new Exception('There was a problem sending email.');
+            }           
         } catch (Exception $ex) {
             error_log($ex->__toString());
         }
@@ -44,7 +47,6 @@ class MailDAO {
             $data = DBConnection::getInstance()->get('tbl_mail', array($field, '=', $mail));
 
             if($data->count()){
-                //$this->data = $data->first();
                 return $data;
             }
         }
@@ -52,13 +54,15 @@ class MailDAO {
     }
     
     public function findMailsTo($mail = null){
+        //echo $mail;passed
         if($mail){
             $field = (is_numeric($mail)) ? 'to_user_id' : 'mail_title';
+            //echo $field;passed
             $data = DBConnection::getInstance()->get('tbl_mail', array($field, '=', $mail));
-
-            if($data->count()){
-                //$this->data = $data->first();
-                return $data;
+            if(isset($data)){
+                if($data->count()){
+                    return $data;
+                }
             }
         }
         return false;
@@ -68,5 +72,18 @@ class MailDAO {
         if(! DBConnection::getInstance()->delete('tbl_mail', $fields) ){
             throw new Exception('There was a problem deleting mail.');
         }        
+    }
+
+    public function find($mail = null){        
+        if($mail){
+            $field = (is_numeric($mail)) ? 'mail_id' : 'username';
+            $data = DBConnection::getInstance()->get('tbl_mail', array($field, '=', $mail));
+
+            if($data->count()){
+                $this->data = $data->first();
+                return $this->data;
+            }
+        }
+        return false;
     }
 }//end class

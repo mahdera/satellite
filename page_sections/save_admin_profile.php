@@ -16,7 +16,7 @@
         $modifiedUser->setUserId($userId);
         $modifiedUser->setUserType($userType);
         $modifiedUser->setUsername($fetchedUser->username);
-        $modifiedUser->setUserPassword($fetchedUser->user_password);
+        $modifiedUser->existingUserPassword($fetchedUser->user_password);
         $modifiedUser->setUserFullName($userFullName);
         $modifiedUser->setUserStatus($userStatus);
         $modifiedUser->setEmail($fetchedUser->email);

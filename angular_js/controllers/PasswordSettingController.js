@@ -82,4 +82,5 @@ adminDashboardApp.controller('PasswordSettingController', function($scope, $rout
         return( source );
 
     }
+    
 });//end controller

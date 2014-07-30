@@ -18,56 +18,64 @@
 </div>
 <!-- /.navbar-header -->
 <ul class="nav navbar-top-links navbar-right">
-    <li class="dropdown">
+    <li class="dropdown" ng-controller="HeaderMailDropdownController">
         <a class="dropdown-toggle" data-toggle="dropdown" ng-href="">
             <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
+        <?php
+            //now get the first four inbox mails from the database
+            $mail = new Mail();
+            $inboxMailList = $mail->getAllMailsTo($userId);
+            $user = new User();
+            $today = date("Y-m-d h:i:sa");
+        ?>
         <ul class="dropdown-menu dropdown-messages">
-            <li>
-                <a href="#">
-                    <div>
-                        <strong>John Smith</strong>
-                        <span class="pull-right text-muted">
-                        <em>Yesterday</em>
-                        </span>
-                    </div>
-                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-                <a href="#">
-                    <div>
-                        <strong>John Smith</strong>
-                        <span class="pull-right text-muted">
-                        <em>Yesterday</em>
-                        </span>
-                    </div>
-                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-                <a href="#">
-                    <div>
-                        <strong>John Smith</strong>
-                        <span class="pull-right text-muted">
-                        <em>Yesterday</em>
-                        </span>
-                    </div>
-                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-                <a class="text-center" href="#">
-                    <strong>Read All Messages</strong>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
+            <?php
+            if(!empty($inboxMailList)){
+                $rows = $inboxMailList->getResults();
+                foreach($rows as $row){
+                    //find the sender user...
+                    $senderUser = $user->getUserUsingUserId($row->from_user_id);
+                    $mailSentDate = $row->mail_date;
+                    $diff = abs(strtotime($today) - strtotime($mailSentDate));
+                    $years = floor($diff / (365*60*60*24));
+                    $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                    $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+            ?>
+                <li>
+                    <a href="#">
+                        <div>
+                            <strong><?php echo $senderUser->user_full_name;?></strong>
+                            <span class="pull-right text-muted">
+                            <em><?php echo $days;?></em>
+                            </span>
+                        </div>
+                        <div style="display:inline-block; overflow:hidden; width:250px; height:45px;">
+                            <?php echo $row->mail_content;?>
+                        </div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+            <?php
+                }//end foreach loop
+            ?>
+               <li>
+                    <a class="text-center" href="#">
+                        <strong>Read All Messages</strong>
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </li> 
+            <?php            
+                }//end if
+            ?>
+
+            
+            
+            
         </ul>
         <!-- /.dropdown-messages -->
     </li>
+
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" ng-href="">
             <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -164,7 +172,7 @@
                         Logout
                 </a>
             </li>
-        </ul>
+</ul>
 <!-- /.dropdown-user -->
     </li>
 <!-- /.dropdown -->

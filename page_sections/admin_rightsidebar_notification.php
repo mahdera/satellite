@@ -5,54 +5,36 @@
     <!-- /.panel-heading -->
     <div class="panel-body">
         <div class="list-group">
-            <a href="#" class="list-group-item">
-                <i class="fa fa-comment fa-fw"></i> New Comment
-                <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-envelope fa-fw"></i> Message Sent
+                      
+            <a ng-href="#/view/mail/inbox/<?php echo $userId;?>" class="list-group-item">
+                <i class="fa fa-envelope fa-fw"></i> Mail Inbox
                 <span class="pull-right text-muted small"><em>27 minutes ago</em>
                 </span>
             </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-tasks fa-fw"></i> New Task
-                <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                <span class="pull-right text-muted small"><em>11:32 AM</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-bolt fa-fw"></i> Server Crashed!
+            <a ng-href="#/view/mail/sent/<?php echo $userId;?>" class="list-group-item">
+                <i class="fa fa-bolt fa-fw"></i> Sent Mail
                 <span class="pull-right text-muted small"><em>11:13 AM</em>
                 </span>
             </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                <span class="pull-right text-muted small"><em>10:57 AM</em>
+            <a ng-href="#/view/mail/compose/<?php echo $userId;?>" class="list-group-item">
+                <i class="fa fa-upload fa-fw"></i> Compose Mail
+                <span class="pull-right text-muted small"><em>11:32 AM</em>
                 </span>
             </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                <span class="pull-right text-muted small"><em>9:49 AM</em>
-                </span>
+            <a ng-href="#" class="list-group-item">                
+                <i class="fa fa-tasks fa-fw"></i> New Members
+                <span class="pull-right text-muted small">4 minutes ago</span>                
             </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-money fa-fw"></i> Payment Received
-                <span class="pull-right text-muted small"><em>Yesterday</em>
+        
+            <a ng-href="#" class="list-group-item">
+                <i class="fa fa-comment fa-fw"></i> New Comment
+                <span class="pull-right text-muted small"><em>4 minutes ago</em>
                 </span>
-            </a>
+            </a>  
+            
         </div>
         <!-- /.list-group -->
-        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+        <a ng-href="#" class="btn btn-default btn-block">View All Alerts</a>
     </div>
     <!-- /.panel-body -->
 </div>

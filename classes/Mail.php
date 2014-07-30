@@ -102,16 +102,19 @@ class Mail {
     
     public function send($mail){
         $mailDao = new MailDAO();
-        $mailDao->save($mail);
+        $mailDao->save($mail);        
     }
     
     public function getAllMailsTo($userId){
+        //echo $userId;passed
         $mailDao = new MailDAO();
         $fetchedMail = $mailDao->findMailsTo($userId);
+        //var_dump($fetchedMail);failed...
         return $fetchedMail;
     }
     
     public function getAllMailsFrom($userId){
+        //echo $userId;passed
         $mailDao = new MailDAO();
         $fetchedMail = $mailDao->findMailsFrom($userId);
         return $fetchedMail;
@@ -120,5 +123,11 @@ class Mail {
     public function delete($mail){
         $mailDao = new MailDAO();
         $mailDao->delete($mail);
+    }
+
+    public function getMailUsingMailId($mailId){
+        $mailDao = new MailDAO();
+        $fetchedMail = $mailDao->find($mailId);
+        return $fetchedMail;
     }
 }//end class

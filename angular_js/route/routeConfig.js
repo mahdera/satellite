@@ -19,6 +19,18 @@ adminDashboardApp.config(['$routeProvider',
         when('/view/setting/password/:uId',{
             templateUrl: 'show_user_password_setting_form.php',
             controller: 'PasswordSettingController'
+        }).
+        when('/view/mail/compose/:uId',{
+            templateUrl: 'show_compose_mail_form.php',
+            controller: 'ComposeMailController'
+        }).
+        when('/view/mail/sent/:uId',{
+            templateUrl: 'show_list_of_sent_mails.php',
+            controller: 'SentMailController'
+        }).
+        when('/view/mail/inbox/:uId',{
+            templateUrl: 'show_list_of_inbox_mails.php',
+            controller: 'InboxMailController'
         });
         
         

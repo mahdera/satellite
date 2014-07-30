@@ -26,6 +26,11 @@
         <!-- Custom Fonts -->
         <link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="../css/style-form-validation.css" rel="stylesheet" type="text/css"/>
+        <!--style for the text editor -->
+        <link rel="stylesheet" type="text/css" href="../jQuery-TE_v.1.4.0/jquery-te-1.4.0.css" />
+        <!--style for the datatables-->
+        <link href="../admin_css/plugins/dataTables.bootstrap.css" rel="stylesheet">
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

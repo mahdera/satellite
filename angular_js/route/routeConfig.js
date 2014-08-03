@@ -31,6 +31,10 @@ adminDashboardApp.config(['$routeProvider',
         when('/view/mail/inbox/:uId',{
             templateUrl: 'show_list_of_inbox_mails.php',
             controller: 'InboxMailController'
+        }).
+        when('/view/setting/image/slider/add',{
+            templateUrl: 'show_add_image_slider_form.php',
+            controller: 'AddImageSliderController'
         });
         
         

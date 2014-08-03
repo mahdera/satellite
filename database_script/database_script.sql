@@ -30,3 +30,14 @@ create table tbl_mail(
     foreign key(from_user_id) references tbl_user(user_id),
     foreign key(to_user_id) references tbl_user(user_id)
 );
+
+create table tbl_home_page_image_slider(
+    image_id int auto_increment,
+    image_path varchar(50) not null,
+    impage_caption varchar(255) not null,
+    upload_date datetime not null,
+    modified_by int not null,
+    modification_date datetime not null,
+    primary key(image_id),
+    foreign key(modified_by) references tbl_user(id)
+);

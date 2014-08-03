@@ -11,61 +11,115 @@
                     </span>
                 </div>
                 <!-- /input-group -->
-            </li>
-            <li>
-                <a class="active" href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>            
             <li>
-                <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-            </li>
-            <li>
-                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i> Sub Detail Menu Item<span class="fa arrow"></span></a>
+                <a href="#" style="color:black"><i class="fa fa-wrench fa-fw"></i> <strong>Image Slider</strong><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="panels-wells.html">Option 1</a>
+                        <a ng-href="#/view/setting/image/slider/add">Add Images</a>
                     </li>
                     <li>
-                        <a href="buttons.html">Option 2</a>
+                        <a href="buttons.html">View Images</a>
                     </li>
                     <li>
-                        <a href="notifications.html">Option 3</a>
+                        <a href="notifications.html">Edit Image</a>
                     </li>
                     <li>
-                        <a href="typography.html">Option 4</a>
-                    </li>
-                    <li>
-                        <a href="grid.html">Option 5</a>
-                    </li>
+                        <a href="typography.html">Delete Image</a>
+                    </li>                    
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                <a href="#" style="color:black"><i class="fa fa-wrench fa-fw"></i> <strong>Center Box</strong><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Second Level Item</a>
+                        <a href="panels-wells.html">Add Content</a>
                     </li>
                     <li>
-                        <a href="#">Second Level Item</a>
-                    </li>
+                        <a href="buttons.html">View Content</a>
+                    </li>                    
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#" style="color:black"><i class="fa fa-sitemap fa-fw"></i> <strong>Lower Box</strong><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">                    
                     <li>
-                        <a href="#">Third Level <span class="fa arrow"></span></a>
+                        <a href="#">First Column <span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li>
-                                <a href="#">Third Level Item</a>
+                                <a href="#">Add Content</a>
                             </li>
                             <li>
-                                <a href="#">Third Level Item</a>
+                                <a href="#">View Content</a>
+                            </li>                            
+                        </ul>
+                        <!-- /.nav-third-level -->
+                    </li>
+                    <li>
+                        <a href="#">Second Column <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="#">Add Content</a>
                             </li>
                             <li>
-                                <a href="#">Third Level Item</a>
+                                <a href="#">View Content</a>
+                            </li>                            
+                        </ul>
+                        <!-- /.nav-third-level -->
+                    </li>
+                    <li>
+                        <a href="#">Third Column <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="#">Add Content</a>
                             </li>
                             <li>
-                                <a href="#">Third Level Item</a>
+                                <a href="#">View Content</a>
+                            </li>                            
+                        </ul>
+                        <!-- /.nav-third-level -->
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li> 
+            <li>
+                <a href="#" style="color:black"><i class="fa fa-sitemap fa-fw"></i> <strong>Footer</strong><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">                    
+                    <li>
+                        <a href="#">News <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="#">Add News</a>
                             </li>
+                            <li>
+                                <a href="#">View News</a>
+                            </li>                            
+                        </ul>
+                        <!-- /.nav-third-level -->
+                    </li>
+                    <li>
+                        <a href="#">Events <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="#">Add Event</a>
+                            </li>
+                            <li>
+                                <a href="#">View Events</a>
+                            </li>                            
+                        </ul>
+                        <!-- /.nav-third-level -->
+                    </li>
+                    <li>
+                        <a href="#">Contact <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="#">Add Contact</a>
+                            </li>
+                            <li>
+                                <a href="#">View Contact</a>
+                            </li>                            
                         </ul>
                         <!-- /.nav-third-level -->
                     </li>

@@ -34,7 +34,7 @@
         <div class="pkb-tweet">
            <div id="twitter_t"></div>
                 <div id="twitter_m">
-                   <div id="twitter_container">
+                   <div id="twitter_container" style="opacity: 0.5">
                        <ul id="twitter_update_list1">
                            <a class="twitter-timeline" href="https://twitter.com/mahder_a" data-widget-id="494285061106044931">Tweets by @mahder_a</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

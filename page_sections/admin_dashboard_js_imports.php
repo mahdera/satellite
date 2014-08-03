@@ -14,6 +14,8 @@
 
 
 <script src="../admin_js/sb-admin-2.js"></script>
+<!--the angular-file-upload-shim.js must be imported before the angular library-->
+<script type="text/javascript" src="../angular_js/angular-file-upload-shim.js"></script>
 <script type="text/javascript" src="../local_js_frameworks/angular.js"></script>
 <script type="text/javascript" src="../angular_js/angular-route.min.js"></script>
 <script type="text/javascript" src="../angular_js/adminDashboardApp.js"></script>
@@ -30,3 +32,5 @@
 <script type="text/javascript" src="../angular_js/controllers/SentMailController.js"></script>
 <script type="text/javascript" src="../angular_js/controllers/InboxMailController.js"></script>
 <script type="text/javascript" src="../angular_js/controllers/HeaderMailDropdownController.js"></script>
+<script type="text/javascript" src="../angular_js/controllers/AddImageSliderController.js"></script>
+<script type="text/javascript" src="../angular_js/angular-file-upload.js"></script>

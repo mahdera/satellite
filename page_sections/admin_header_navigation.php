@@ -28,10 +28,10 @@
             $inboxMailList = $mail->getAllMailsTo($userId);
             $user = new User();
             $today = date("Y-m-d h:i:sa");
+            if(!empty($inboxMailList)){
         ?>
         <ul class="dropdown-menu dropdown-messages">
-            <?php
-            if(!empty($inboxMailList)){
+            <?php            
                 $rows = $inboxMailList->getResults();
                 foreach($rows as $row){
                     //find the sender user...
@@ -64,15 +64,11 @@
                         <strong>Read All Messages</strong>
                         <i class="fa fa-angle-right"></i>
                     </a>
-                </li> 
-            <?php            
-                }//end if
-            ?>
-
-            
-            
-            
+                </li>             
         </ul>
+        <?php            
+            }//end if
+        ?>
         <!-- /.dropdown-messages -->
     </li>
 

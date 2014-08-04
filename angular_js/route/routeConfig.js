@@ -35,6 +35,18 @@ adminDashboardApp.config(['$routeProvider',
         when('/view/setting/image/slider/add',{
             templateUrl: 'show_add_image_slider_form.php',
             controller: 'AddImageSliderController'
+        }).
+        when('/view/setting/image/slider/list',{
+            templateUrl: 'show_list_image_slider.php',
+            controller: 'ListImageSliderController'
+        }).
+        when('/view/setting/image/slider/delete',{
+            templateUrl: 'show_list_image_slider_delete.php',
+            controller: 'ListDeleteImageSliderController'
+        }).
+        when('/view/setting/centerbox/content/add',{
+            templateUrl: 'show_add_centerbox_content_form.php',
+            controller: 'AddCenterBoxContentController'
         });
         
         

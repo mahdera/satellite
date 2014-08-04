@@ -41,3 +41,14 @@ create table tbl_home_page_image_slider(
     primary key(image_id),
     foreign key(modified_by) references tbl_user(id)
 );
+
+create table tbl_center_box_content(
+    center_box_content_id int auto_increment,
+    title varchar(200) not null,
+    content text not null,
+    post_date datetime not null,
+    modified_by int not null,
+    modification_date datetime not null,
+    primary key(center_box_content_id),
+    foreign key(modified_by) references tbl_user(id)
+);

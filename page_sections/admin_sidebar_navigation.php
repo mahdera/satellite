@@ -19,13 +19,10 @@
                         <a ng-href="#/view/setting/image/slider/add">Add Images</a>
                     </li>
                     <li>
-                        <a href="buttons.html">View Images</a>
-                    </li>
+                        <a ng-href="#/view/setting/image/slider/list">View Images</a>
+                    </li>                    
                     <li>
-                        <a href="notifications.html">Edit Image</a>
-                    </li>
-                    <li>
-                        <a href="typography.html">Delete Image</a>
+                        <a href="#/view/setting/image/slider/delete">Delete Image</a>
                     </li>                    
                 </ul>
                 <!-- /.nav-second-level -->
@@ -34,7 +31,7 @@
                 <a href="#" style="color:black"><i class="fa fa-wrench fa-fw"></i> <strong>Center Box</strong><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="panels-wells.html">Add Content</a>
+                        <a ng-href="#/view/setting/centerbox/content/add">Add Content</a>
                     </li>
                     <li>
                         <a href="buttons.html">View Content</a>

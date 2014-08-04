@@ -101,7 +101,9 @@ class DBConnection {
             
             if(in_array($operator, $operators)){
                 $sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
+                //echo $sql;
                 if( !$this->query($sql, array($value))->error() ){
+                    //var_dump($sql);
                     return $this;//was this
                 }
             }
@@ -109,6 +111,7 @@ class DBConnection {
     }
     
     public function get($table, $where){
+        //echo 'inside get() : '.$table.' '.var_dump($where);
         return $this->action('SELECT *', $table, $where);
     }
     
@@ -164,6 +167,18 @@ class DBConnection {
 
     public function fetchAllRecords($table, $where){
         return $this->query("SELECT * FROM {$table} WHERE $where");
+    }
+
+    public function getAllRecordsFromTable($tableName, $pkField){
+        //echo 'inside getAllRec...'.$tableName.' '.$pkField;
+        $result = $this->get($tableName, array($pkField, '>', 0));
+        //var_dump($result);
+        if(!empty($result)){
+            if($result->count()){
+                return $result;
+            }
+        }
+        return false;
     }
     
     public function count(){        

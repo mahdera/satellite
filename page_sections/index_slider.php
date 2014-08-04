@@ -1,18 +1,17 @@
 <div id="slide-container"  class="clearfix">
     <div id="slider-wrapper" class="left">
+        <?php
+            //here get all the images stored in the page_sections/image_slider...
+            $handle = opendir(dirname(realpath(__FILE__)).'/image_slider/');
+        ?>
         <div id="slider" class="nivoSlider"> 
-            <a href="http://themeforest.net?ref=population2" target="_blank">
-                <img src="img/stock/slide-image-1.jpg" alt="image 1" width="100%"/>
-            </a> 
-            <a href="http://graphicriver.net?ref=population2" target="_blank">
-                <img src="img/stock/slide-image-2.jpg" alt="" title="This is slide image 2" width="100%"/>
-            </a> 
-            <a href="http://codecanyon.net?ref=population2" target="_blank">
-                <img src="img/stock/slide-image-3.jpg" alt="" width="100%"/>
-            </a> 
-            <img src="img/stock/slide-image-4.jpg" alt="" title="#htmlcaption" /> 
-        </div>
-        <div id="htmlcaption" class="nivo-html-caption"> Caption with <a href="#">a link</a>. </div>
+            <?php
+                while($file = readdir($handle)){
+                    if($file !== '.' && $file !== '..'){
+                        echo "<img src='page_sections/image_slider/$file' border='0'/>";                    }
+                }//end while loop
+            ?>            
+        </div>        
     </div>
     <div id="quickmenu" class="left">
         <h2 class="replace">Our Programs</h2>

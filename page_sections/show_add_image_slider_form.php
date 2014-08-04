@@ -4,7 +4,7 @@
         <input type="hidden" ng-model="myModelObj">
         <input type="file" ng-file-select="onFileSelect($files)">
     </div>
-    <div>
+    <div id="uploadStatusDiv">
         
     </div>
 </div>
